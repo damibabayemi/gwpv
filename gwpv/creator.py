@@ -2,7 +2,7 @@ import numpy as np
 import h5py
 
 D = 10
-num_points = 100
+num_points = 10
 X = np.linspace(-D, D, num_points)
 Y = X
 Z = X
