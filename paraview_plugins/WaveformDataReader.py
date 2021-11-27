@@ -106,26 +106,31 @@ class WaveformDataReader(VTKPythonAlgorithmBase):
         logger.warning(self._filename)
 
         # check if analytical data was given
-        if self._filename[-12:] == "analytics.h5":
+        if self._filename[-16:] == "timeseparated.h5":
 
             with h5py.File(self._filename, 'r') as f:
                 strain = f[self._subfile]
-                t = np.real(strain['analytics'][1:, 0])
+                t = np.real(strain['t_values.dir'][:])
                 col_time = vtknp.numpy_to_vtk(t, deep=False)
                 col_time.SetName('Time')
                 output.AddColumn(col_time)
-
-                for i in range(1000):
-                    col_mode = vtknp.numpy_to_vtk(np.real(strain['analytics'][1:, i]),
+                zwischengrid = np.zeros((len(strain['t_values.dir'][:]), len(strain['t_{}.dir'.format(strain['t_values.dir'][5])][:])), dtype=np.complex)
+                for i in range(len(strain['t_values.dir'][:])):
+                    zwischengrid[i][:] = strain['t_{}.dir'.format(strain['t_values.dir'][i])][:]
+                griddy = np.transpose(zwischengrid)
+                for i in range(len(zwischengrid[5][:])):
+                    col_point = vtknp.numpy_to_vtk(np.real(griddy[i][:]),
                                                   deep=False)
-                    col_mode.SetName('R Theta = '+str(i) + 'Phi = '+str(i))
-                    output.AddColumn(col_mode)
+                    col_point.SetName('R '+str(i))
 
-                for i in range(1000):
-                    col_mode = vtknp.numpy_to_vtk(np.imag(strain['analytics'][1:, i]),
-                                                  deep=False)
-                    col_mode.SetName('Im Theta = '+str(i) + 'Phi = '+str(i))
-                    output.AddColumn(col_mode)
+                    output.AddColumn(col_point)
+
+                    col_pointi = vtknp.numpy_to_vtk(np.imag(griddy[i][:]),
+                                                   deep=False)
+                    col_pointi.SetName('I '+str(i))
+
+                    output.AddColumn(col_pointi)
+
 
         elif self._filename is not None and self._subfile is not None and len(
                 self.mode_names) > 0:
