@@ -52,7 +52,7 @@ class WaveformDataReader(VTKPythonAlgorithmBase):
         # a subset of modes to display, for example.
 
         # check if analytical data was given
-        if self._filename[-12:] == "analytics.h5":
+        if self._filename[-16:] == "timeseparated.h5":
 
             with h5py.File(self._filename, 'r') as f:
                 self.mode_names = list(
