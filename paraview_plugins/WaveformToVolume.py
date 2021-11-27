@@ -334,7 +334,7 @@ class WaveformToVolume(VTKPythonAlgorithmBase):
         if type(waveform_data.RowData['R 1'][5]) is not dsa.VTKNoneArray:
             indexx = list(map(abs, list(waveform_timesteps - t))).index(
                 np.min(list(map(abs, list(waveform_timesteps - t)))))
-            for i in range(1000):
+            for i in range(1000000):
                 strain[i] = waveform_data.RowData['R ' + str(i)][indexx] + 1j * \
                             waveform_data.RowData['I ' + str(i)][indexx]
                 
