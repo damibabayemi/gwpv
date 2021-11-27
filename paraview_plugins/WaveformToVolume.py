@@ -329,15 +329,15 @@ class WaveformToVolume(VTKPythonAlgorithmBase):
         # Optimization for when the waveform is sampled uniformly
         # TODO: Cache this
         
-        # Here the analytical data gets recognized, by checking if the given data is simulation-data,
-        # if not the program treats the data as analytical  created with creator.py
-        if type(waveform_data.RowData['Y_l2_m2'][5]) is dsa.VTKNoneArray:
+        # Here analytical data created by creator.py is recognized
 
+        if type(waveform_data.RowData['R 1'][5]) is not dsa.VTKNoneArray:
             indexx = list(map(abs, list(waveform_timesteps - t))).index(
                 np.min(list(map(abs, list(waveform_timesteps - t)))))
             for i in range(1000):
-                strain[i] = waveform_data.RowData['R Theta = ' + str(i) + 'Phi = ' + str(i)][indexx] + 1j * \
-                            waveform_data.RowData['Im Theta = ' + str(i) + 'Phi = ' + str(i)][indexx]
+                strain[i] = waveform_data.RowData['R ' + str(i)][indexx] + 1j * \
+                            waveform_data.RowData['I ' + str(i)][indexx]
+                
         else:
 
 
