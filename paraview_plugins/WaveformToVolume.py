@@ -325,19 +325,20 @@ class WaveformToVolume(VTKPythonAlgorithmBase):
         # This section can be deleted when using SwshGrid input
         spin_weight = -2
         ell_max = self.ell_max
-        swsh_grid, r = cached_swsh_grid(
-            size=D,
-            num_points=N,
-            spin_weight=spin_weight,
-            ell_max=ell_max,
-            radial_scale=self.radial_scale,
-            clip_y_normal=self.clip_y_normal,
-            clip_z_normal=self.clip_z_normal,
-            activation_offset=self.activation_offset,
-            activation_width=self.activation_width,
-            deactivation_width=self.deactivation_width,
-            add_one_over_r_scaling=self.add_one_over_r_scaling,
-            cache_dir=self.swsh_cache_dir)
+        if type(waveform_data.RowData['Y_l2_m2'][5]) is not dsa.VTKNoneArray:
+            swsh_grid, r = cached_swsh_grid(
+                size=D,
+                num_points=N,
+                spin_weight=spin_weight,
+                ell_max=ell_max,
+                radial_scale=self.radial_scale,
+                clip_y_normal=self.clip_y_normal,
+                clip_z_normal=self.clip_z_normal,
+                activation_offset=self.activation_offset,
+                activation_width=self.activation_width,
+                deactivation_width=self.deactivation_width,
+                add_one_over_r_scaling=self.add_one_over_r_scaling,
+                cache_dir=self.swsh_cache_dir)
 
         logger.info("Computing volume data at t={}...".format(t))
         start_time = time.time()
