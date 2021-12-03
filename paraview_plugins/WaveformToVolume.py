@@ -340,29 +340,29 @@ class WaveformToVolume(VTKPythonAlgorithmBase):
                 add_one_over_r_scaling=self.add_one_over_r_scaling,
                 cache_dir=self.swsh_cache_dir)
 
-        logger.info("Computing volume data at t={}...".format(t))
-        start_time = time.time()
+            logger.info("Computing volume data at t={}...".format(t))
+            start_time = time.time()
 
-        # Compute scaled waveform phase on the grid
-        # r = vtknp.vtk_to_numpy(grid_data.GetPointData()['RadialCoordinate'])
-        phase = t - r
+            # Compute scaled waveform phase on the grid
+            # r = vtknp.vtk_to_numpy(grid_data.GetPointData()['RadialCoordinate'])
+            phase = t - r
 
-        # Invert rotation direction
-        rotation_direction = -1. if self.invert_rotation_direction else 1.
+            # Invert rotation direction
+            rotation_direction = -1. if self.invert_rotation_direction else 1.
 
-        # Compute strain in the volume from the input waveform data
-        skip_timesteps = self.keep_every_n_timestep
-        waveform_timesteps = waveform_data.RowData['Time'][::skip_timesteps]
-        strain = np.zeros(len(r), dtype=np.complex)
-        # Optimization for when the waveform is sampled uniformly
-        # TODO: Cache this
+            # Compute strain in the volume from the input waveform data
+            skip_timesteps = self.keep_every_n_timestep
+            waveform_timesteps = waveform_data.RowData['Time'][::skip_timesteps]
+            strain = np.zeros(len(r), dtype=np.complex)
+            # Optimization for when the waveform is sampled uniformly
+            # TODO: Cache this
         
         # Here analytical data created by creator.py is recognized
 
         if type(waveform_data.RowData['Y_l2_m2'][5]) is dsa.VTKNoneArray:
             strain = np.zeros(1000000, dtype=np.complex)
-            indexx = list(map(abs, list(waveform_timesteps - t))).index(
-                    np.min(list(map(abs, list(waveform_timesteps - t)))))
+            indexx = list(map(abs, list(waveform_data.RowData['Time'] - t))).index(
+                    np.min(list(map(abs, list(waveform_data.RowData['Time'] - t)))))
             strain += strainz[indexx]
                 
         else:
