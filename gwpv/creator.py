@@ -20,7 +20,7 @@ def theta(x, y, z):
 
 # dummy function
 def waveform(x, y, z, t):
-    return (1 - 1j)*(np.cos(theta(x, y, z))*1/(t+101) + np.sin(theta(x, y, z))*1/((t+50)**2)*np.cos(0.1*phi(x, y)))
+    return 100*(1 - 1j)*(np.cos(theta(x, y, z))*1/(t+101) + np.sin(theta(x, y, z))*1/((t+50)**2)*np.cos(0.1*phi(x, y)))
 
 
 h5f = h5py.File('timeseparated.h5', 'w')
