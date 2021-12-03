@@ -114,23 +114,7 @@ class WaveformDataReader(VTKPythonAlgorithmBase):
                 col_time = vtknp.numpy_to_vtk(t, deep=False)
                 col_time.SetName('Time')
                 output.AddColumn(col_time)
-                zwischengrid = np.zeros((len(strain['t_values.dir'][:]), len(strain['t_{}.dir'.format(strain['t_values.dir'][5])][:])), dtype=np.complex)
-                for i in range(len(strain['t_values.dir'][:])):
-                    zwischengrid[i][:] = strain['t_{}.dir'.format(strain['t_values.dir'][i])][:]
-                griddy = np.transpose(zwischengrid)
-                for i in range(len(zwischengrid[5][:])):
-                    col_point = vtknp.numpy_to_vtk(np.real(griddy[i][:]),
-                                                  deep=False)
-                    col_point.SetName('R '+str(i))
-
-                    output.AddColumn(col_point)
-
-                    col_pointi = vtknp.numpy_to_vtk(np.imag(griddy[i][:]),
-                                                   deep=False)
-                    col_pointi.SetName('I '+str(i))
-
-                    output.AddColumn(col_pointi)
-
+                
 
         elif self._filename is not None and self._subfile is not None and len(
                 self.mode_names) > 0:
