@@ -341,7 +341,8 @@ class WaveformToVolume(VTKPythonAlgorithmBase):
                 cache_dir=self.swsh_cache_dir)
 
             logger.info("Computing volume data at t={}...".format(t))
-            start_time = time.time()
+        start_time = time.time()
+        if type(waveform_data.RowData['Y_l2_m2'][5]) is not dsa.VTKNoneArray:
 
             # Compute scaled waveform phase on the grid
             # r = vtknp.vtk_to_numpy(grid_data.GetPointData()['RadialCoordinate'])
