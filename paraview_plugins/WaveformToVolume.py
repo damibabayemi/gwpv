@@ -26,14 +26,14 @@ try:
         h = f['Extrapolated_N2.dir']
         tick = np.real(h['t_values.dir'])
         for i in range(len(tick)):
-            strainz[i][:1000] += np.real(h['t_{}.dir'.format(tick[i])]) + 1j*np.imag(h['t_{}.dir'.format(tick[i])])
+            strainz[i] += np.real(h['t_{}.dir'.format(tick[i])]) + 1j*np.imag(h['t_{}.dir'.format(tick[i])])
 except FileNotFoundError:
     try:
         with h5py.File("timeseparated.h5", "r") as f:
             h = f['Extrapolated_N2.dir']
             tick = np.real(h['t_values.dir'])
             for i in range(len(tick)):
-                strainz[i][:1000] += np.real(h['t_{}.dir'.format(tick[i])]) + 1j * np.imag(
+                strainz[i] += np.real(h['t_{}.dir'.format(tick[i])]) + 1j * np.imag(
                     h['t_{}.dir'.format(tick[i])])
     except FileNotFoundError:
         try:
@@ -41,7 +41,7 @@ except FileNotFoundError:
                 h = f['Extrapolated_N2.dir']
                 tick = np.real(h['t_values.dir'])
                 for i in range(len(tick)):
-                    strainz[i][:1000] += np.real(h['t_{}.dir'.format(tick[i])]) + 1j * np.imag(
+                    strainz[i] += np.real(h['t_{}.dir'.format(tick[i])]) + 1j * np.imag(
                         h['t_{}.dir'.format(tick[i])])
         except FileNotFoundError:
             logger.warning('file not found :(')
