@@ -20,6 +20,32 @@ from gwpv import swsh_cache
 
 logger = logging.getLogger(__name__)
 
+strainz = np.zeros((100, 1000000), dtype=np.complex)
+try:
+    with h5py.File("gwpv/timeseparated.h5", "r") as f:
+        h = f['Extrapolated_N2.dir']
+        tick = np.real(h['t_values.dir'])
+        for i in range(len(tick)):
+            strainz[i][:1000] += np.real(h['t_{}.dir'.format(tick[i])]) + 1j*np.imag(h['t_{}.dir'.format(tick[i])])
+except FileNotFoundError:
+    try:
+        with h5py.File("timeseparated.h5", "r") as f:
+            h = f['Extrapolated_N2.dir']
+            tick = np.real(h['t_values.dir'])
+            for i in range(len(tick)):
+                strainz[i][:1000] += np.real(h['t_{}.dir'.format(tick[i])]) + 1j * np.imag(
+                    h['t_{}.dir'.format(tick[i])])
+    except FileNotFoundError:
+        try:
+            with h5py.File("gwpv/gwpv/timeseparated.h5", "r") as f:
+                h = f['Extrapolated_N2.dir']
+                tick = np.real(h['t_values.dir'])
+                for i in range(len(tick)):
+                    strainz[i][:1000] += np.real(h['t_{}.dir'.format(tick[i])]) + 1j * np.imag(
+                        h['t_{}.dir'.format(tick[i])])
+        except FileNotFoundError:
+            logger.warning('file not found :(')
+
 
 def get_mode_name(l, abs_m):
     return "({}, {}) Mode".format(l, abs_m)
@@ -331,12 +357,10 @@ class WaveformToVolume(VTKPythonAlgorithmBase):
         
         # Here analytical data created by creator.py is recognized
 
-        if type(waveform_data.RowData['R 1'][5]) is not dsa.VTKNoneArray:
+        if type(waveform_data.RowData['Y_l2_m2'][5]) is dsa.VTKNoneArray:
             indexx = list(map(abs, list(waveform_timesteps - t))).index(
-                np.min(list(map(abs, list(waveform_timesteps - t)))))
-            for i in range(1000000):
-                strain[i] = waveform_data.RowData['R ' + str(i)][indexx] + 1j * \
-                            waveform_data.RowData['I ' + str(i)][indexx]
+                    np.min(list(map(abs, list(waveform_timesteps - t)))))
+            strain += strainz[indexx]
                 
         else:
 
