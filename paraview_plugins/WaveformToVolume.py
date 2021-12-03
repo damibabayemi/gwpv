@@ -359,6 +359,7 @@ class WaveformToVolume(VTKPythonAlgorithmBase):
         # Here analytical data created by creator.py is recognized
 
         if type(waveform_data.RowData['Y_l2_m2'][5]) is dsa.VTKNoneArray:
+            strain = np.zeros(1000000, dtype=np.complex)
             indexx = list(map(abs, list(waveform_timesteps - t))).index(
                     np.min(list(map(abs, list(waveform_timesteps - t)))))
             strain += strainz[indexx]
