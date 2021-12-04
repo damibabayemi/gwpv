@@ -1,3 +1,4 @@
+
 # WaveformToVolume Paraview filter
 
 # Load the `WaveformDataReader` to access its VTK keys
@@ -21,20 +22,22 @@ import h5py
 
 logger = logging.getLogger(__name__)
 
-strainz = np.zeros((100, 1000000), dtype=np.complex)
+# Here a grid is created and if analytical data created by creator.py
+# is recognized iti is loaded into the grid.
+strains = np.zeros((100, 1000000), dtype=np.complex)
 try:
     with h5py.File("gwpv/timeseparated.h5", "r") as f:
         h = f['Extrapolated_N2.dir']
         tick = np.real(h['t_values.dir'])
         for i in range(len(tick)):
-            strainz[i] += np.real(h['t_{}.dir'.format(tick[i])]) + 1j*np.imag(h['t_{}.dir'.format(tick[i])])
+            strains[i] += np.real(h['t_{}.dir'.format(tick[i])]) + 1j*np.imag(h['t_{}.dir'.format(tick[i])])
 except FileNotFoundError:
     try:
         with h5py.File("timeseparated.h5", "r") as f:
             h = f['Extrapolated_N2.dir']
             tick = np.real(h['t_values.dir'])
             for i in range(len(tick)):
-                strainz[i] += np.real(h['t_{}.dir'.format(tick[i])]) + 1j * np.imag(
+                strains[i] += np.real(h['t_{}.dir'.format(tick[i])]) + 1j * np.imag(
                     h['t_{}.dir'.format(tick[i])])
     except FileNotFoundError:
         try:
@@ -42,7 +45,7 @@ except FileNotFoundError:
                 h = f['Extrapolated_N2.dir']
                 tick = np.real(h['t_values.dir'])
                 for i in range(len(tick)):
-                    strainz[i] += np.real(h['t_{}.dir'.format(tick[i])]) + 1j * np.imag(
+                    strains[i] += np.real(h['t_{}.dir'.format(tick[i])]) + 1j * np.imag(
                         h['t_{}.dir'.format(tick[i])])
         except FileNotFoundError:
             logger.warning('file not found :(')
@@ -325,6 +328,9 @@ class WaveformToVolume(VTKPythonAlgorithmBase):
         # This section can be deleted when using SwshGrid input
         spin_weight = -2
         ell_max = self.ell_max
+        
+        # We skip this section of the code if non-simulation data is handled
+        # since it becomes simply unnecessary.
         if type(waveform_data.RowData['Y_l2_m2'][5]) is not dsa.VTKNoneArray:
             swsh_grid, r = cached_swsh_grid(
                 size=D,
@@ -342,6 +348,9 @@ class WaveformToVolume(VTKPythonAlgorithmBase):
 
             logger.info("Computing volume data at t={}...".format(t))
         start_time = time.time()
+        
+        # We skip this section of the code if non-simulation data is handled
+        # since it becomes simply unnecessary.
         if type(waveform_data.RowData['Y_l2_m2'][5]) is not dsa.VTKNoneArray:
 
             # Compute scaled waveform phase on the grid
@@ -358,13 +367,17 @@ class WaveformToVolume(VTKPythonAlgorithmBase):
             # Optimization for when the waveform is sampled uniformly
             # TODO: Cache this
         
-        # Here analytical data created by creator.py is recognized
+        # Here the code checks if non-simulation data was passed and visualizes the
+        # analytical data loaded erlier
 
         if type(waveform_data.RowData['Y_l2_m2'][5]) is dsa.VTKNoneArray:
             strain = np.zeros(1000000, dtype=np.complex)
+            # generate the index of the current timestep...
             indexx = list(map(abs, list(waveform_data.RowData['Time'] - t))).index(
                     np.min(list(map(abs, list(waveform_data.RowData['Time'] - t)))))
-            strain += strainz[indexx]
+            # ...and pass the associated column of the strains grid to teh starin value
+            # which is then visualized at the bottom
+            strain += strains[indexx]
                 
         else:
 
