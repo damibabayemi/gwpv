@@ -105,7 +105,8 @@ class WaveformDataReader(VTKPythonAlgorithmBase):
         output = dsa.WrapDataObject(vtkTable.GetData(outInfo))
         logger.warning(self._filename)
 
-        # check if analytical data was given
+        # check if analytical data was given and then only load the timesteps into paraview
+        # since the filter (WaveformToVolume) loads the data by itself
         if self._filename[-16:] == "timeseparated.h5":
 
             with h5py.File(self._filename, 'r') as f:
