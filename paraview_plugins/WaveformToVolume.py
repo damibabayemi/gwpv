@@ -48,7 +48,7 @@ except FileNotFoundError:
                     strains[i] += np.real(h['t_{}.dir'.format(tick[i])]) + 1j * np.imag(
                         h['t_{}.dir'.format(tick[i])])
         except FileNotFoundError:
-            logger.warning('file not found :(')
+            logger.warning('No Bremsstrahlung data found, proceeding with merger visualization.')
 
 
 def get_mode_name(l, abs_m):
