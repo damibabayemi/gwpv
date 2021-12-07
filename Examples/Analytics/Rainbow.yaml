@@ -6,7 +6,7 @@ Include:
 
 Animation:
   Speed: 100
-  Crop: [2150, 2250]
+  Crop: [2100, 2200]
 
 WaveformToVolume:
   Size: 100
