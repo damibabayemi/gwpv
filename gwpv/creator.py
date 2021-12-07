@@ -1,5 +1,7 @@
 import numpy as np
 import h5py
+import numba
+import gwpv.waveform as gw
 
 D = 10
 num_points = 100
@@ -11,16 +13,9 @@ x, y, z = map(lambda arr: arr.flatten(order='F'), np.meshgrid(X, Y, Z, indexing=
 # some randomly chosen timesteps
 t = np.linspace(-102, 1000, 100)
 
-def phi(x, y):
-    return np.arctan2(y, x)
-
-def theta(x, y, z):
-    r = np.sqrt(x ** 2 + y ** 2 + z ** 2)
-    return np.arccos(z / r)
-
-# dummy function
+# the waveform
 def waveform(x, y, z, t):
-    return 100*(1 - 1j)*(np.cos(theta(x, y, z))*1/(t+101) + np.sin(theta(x, y, z))*1/((t+50)**2)*np.cos(0.1*phi(x, y)))
+    return gw.waveformPlus(x,y,z,t,3,2,2,2) + 1j*gw.waveformCross(x,y,z,t,3,2,2,2)
 
 
 h5f = h5py.File('timeseparated.h5', 'w')
