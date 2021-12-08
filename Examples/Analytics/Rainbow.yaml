@@ -2,7 +2,7 @@
 Include:
   - Datasources
   - Background/Dark
-  - Resolutions/Low
+  - Resolutions/Medium
 
 Animation:
   Speed: 10
