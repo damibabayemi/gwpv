@@ -27,11 +27,11 @@ m1 = args.mass1
 m2 = args.mass2
 
 # some randomly chosen timesteps
-t = np.linspace(-2, 100, 100)
+t = np.linspace(-2, 40, 100)
 
 # the waveform
 def waveform(x, y, z, t):
-    return (gw.waveformPlus(x,y,z,t,b,g,m1,m2) + 1j*gw.waveformCross(x,y,z,t,b,g,m1,m2))*0.01
+    return (gw.waveformPlus(x,y,z,t,b,g,m1,m2) + 1j*gw.waveformPlus(x,y,z,t,b,g,m1,m2))*0.01
 
 
 h5f = h5py.File('timeseparated.h5', 'w')
