@@ -3,7 +3,7 @@ import h5py
 import numba
 import gwpv.waveform as gw
 
-D = 10
+D = 20
 num_points = 100
 X = np.linspace(-D, D, num_points)
 Y = X
@@ -11,7 +11,7 @@ Z = X
 x, y, z = map(lambda arr: arr.flatten(order='F'), np.meshgrid(X, Y, Z, indexing='ij'))
 
 # some randomly chosen timesteps
-t = np.linspace(-102, 1000, 100)
+t = np.linspace(-1, 20, 100)
 
 # the waveform
 def waveform(x, y, z, t):
