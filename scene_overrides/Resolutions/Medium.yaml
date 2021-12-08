@@ -5,7 +5,7 @@ Animation:
 
 View:
   Replace:
-    ViewSize: [1920, 1080] # 1080p
+    ViewSize: [1280, 720] # 1080p should be here but it doesnt work right now
 
 WaveformToVolume:
   Replace:
