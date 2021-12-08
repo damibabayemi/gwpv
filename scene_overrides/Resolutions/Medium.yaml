@@ -5,8 +5,8 @@ Animation:
 
 View:
   Replace:
-    ViewSize: [1280, 720] # 1080p should be here but it doesnt work right now
+    ViewSize: [1920, 1080] # 1080p
 
 WaveformToVolume:
   Replace:
-    SpatialResolution: 150
+    SpatialResolution: 50
