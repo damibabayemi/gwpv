@@ -5,8 +5,8 @@ Include:
   - Resolutions/Low
 
 Animation:
-  Speed: 100
-  Crop: [15, 35]
+  Speed: 10
+  Crop: [30, 40]
 
 WaveformToVolume:
   Size: 100
