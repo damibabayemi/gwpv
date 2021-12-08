@@ -11,7 +11,7 @@ Z = X
 x, y, z = map(lambda arr: arr.flatten(order='F'), np.meshgrid(X, Y, Z, indexing='ij'))
 
 # some randomly chosen timesteps
-t = np.linspace(-1, 20, 100)
+t = np.linspace(-1, 100, 100)
 
 # the waveform
 def waveform(x, y, z, t):
