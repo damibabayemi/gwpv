@@ -5,13 +5,13 @@ Include:
   - Resolutions/Test
 
 Animation:
-  Speed: 50
+  Speed: 10
   Crop: [-2, 48]
 
 WaveformToVolume:
   Size: 100
   RadialScale: 2.
-  Polarizations: ["Cross"]
+  Polarizations: ["Plus"]
 
 VolumeRepresentation:
   ColorBy: Plus strain
