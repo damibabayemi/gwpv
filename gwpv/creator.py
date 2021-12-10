@@ -4,7 +4,7 @@ import numba
 import gwpv.waveform as gw
 import argparse
 
-D = 5
+D = 7
 num_points = 100
 X = np.linspace(-D, D, num_points)
 Y = X
@@ -27,7 +27,7 @@ m1 = args.mass1
 m2 = args.mass2
 
 # some randomly chosen timesteps
-t = np.linspace(-10, 100, 100)
+t = np.linspace(-10, 70, 100)
 
 # the waveform
 def waveform(x, y, z, t):
