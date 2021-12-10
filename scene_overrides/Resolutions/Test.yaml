@@ -9,4 +9,4 @@ View:
 
 WaveformToVolume:
   Replace:
-    SpatialResolution: 100
+    SpatialResolution: 200
