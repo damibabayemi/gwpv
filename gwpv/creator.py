@@ -27,7 +27,7 @@ m1 = args.mass1
 m2 = args.mass2
 
 # some randomly chosen timesteps
-t = np.linspace(-10, 70, 100)
+t = np.linspace(-10, 80, 100)
 
 # the waveform
 def waveform(x, y, z, t):
