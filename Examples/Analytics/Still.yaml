@@ -1,7 +1,7 @@
 
 Base:
   - Rainbow
-  - Background/Skybox
+  - Background/Light
   - Resolutions/Test
 
 Animation:
