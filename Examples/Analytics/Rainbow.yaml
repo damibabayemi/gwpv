@@ -9,7 +9,7 @@ Animation:
   Crop: [-2, 40]
 
 WaveformToVolume:
-  Size: 50
+  Size: 100
   RadialScale: 2.
   Polarizations: ["Plus"]
 
