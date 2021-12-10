@@ -5,7 +5,7 @@ Include:
   - Resolutions/Test
 
 Animation:
-  Speed: 50
+  Speed: 10
   Crop: [-2, 48]
 
 WaveformToVolume:
