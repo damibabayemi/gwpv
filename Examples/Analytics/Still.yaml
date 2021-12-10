@@ -1,8 +1,9 @@
 
 Base:
   - Rainbow
+  - Background/Skybox
   - Resolutions/Test
 
 Animation:
   Replace:
-    FreezeTime: 5
+    FreezeTime: 9
