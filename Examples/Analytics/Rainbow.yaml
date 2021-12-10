@@ -5,11 +5,11 @@ Include:
   - Resolutions/Test
 
 Animation:
-  Speed: 25
-  Crop: [40, 90]
+  Speed: 42
+  Crop: [-2, 40]
 
 WaveformToVolume:
-  Size: 100
+  Size: 50
   RadialScale: 2.
   Polarizations: ["Plus"]
 
