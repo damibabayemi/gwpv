@@ -4,7 +4,7 @@ import numba
 import gwpv.waveform as gw
 import argparse
 
-D = 10
+D = 3
 num_points = 100
 X = np.linspace(-D, D, num_points)
 Y = X
@@ -27,11 +27,11 @@ m1 = args.mass1
 m2 = args.mass2
 
 # some randomly chosen timesteps
-t = np.linspace(-2, 40, 100)
+t = np.linspace(-2, 20, 100)
 
 # the waveform
 def waveform(x, y, z, t):
-    return (gw.waveformPlus(x,y,z,t,b,g,m1,m2) + 1j*gw.waveformPlus(x,y,z,t,b,g,m1,m2))*0.01
+    return (gw.waveformPlus(x,y,z,t,b,g,m1,m2) + 1j*gw.waveformCross(x,y,z,t,b,g,m1,m2))*0.01
 
 
 h5f = h5py.File('timeseparated.h5', 'w')
