@@ -18,7 +18,7 @@ VolumeRepresentation:
   ScalarOpacityUnitDistance: 4.
 
 TransferFunctions:
-  - Field: Cross Strain
+  - Field: Plus strain
     TransferFunction:
       Peaks:
         Colormap: Rainbow Uniform
