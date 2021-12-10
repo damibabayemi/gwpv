@@ -5,8 +5,8 @@ Include:
   - Resolutions/Test
 
 Animation:
-  Speed: 5
-  Crop: [-2, 3]
+  Speed: 25
+  Crop: [-2, 40]
 
 WaveformToVolume:
   Size: 100
