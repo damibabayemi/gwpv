@@ -1,9 +1,9 @@
 
 Base:
   - Rainbow
-  - Background/Light
+  - Background/Dark
   - Resolutions/Test
 
 Animation:
   Replace:
-    FreezeTime: 90
+    FreezeTime: 8
