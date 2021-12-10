@@ -1,8 +1,8 @@
 
 Base:
   - Rainbow
-  - Resolutions/Low
+  - Resolutions/High
 
 Animation:
   Replace:
-    FreezeTime: 10
+    FreezeTime: 0
