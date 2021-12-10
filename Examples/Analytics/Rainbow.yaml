@@ -5,20 +5,20 @@ Include:
   - Resolutions/Test
 
 Animation:
-  Speed: 42
-  Crop: [-2, 40]
+  Speed: 50
+  Crop: [-2, 48]
 
 WaveformToVolume:
   Size: 100
   RadialScale: 2.
-  Polarizations: ["Plus"]
+  Polarizations: ["Cross"]
 
 VolumeRepresentation:
   ColorBy: Plus strain
   ScalarOpacityUnitDistance: 4.
 
 TransferFunctions:
-  - Field: Plus strain
+  - Field: Cross Strain
     TransferFunction:
       Peaks:
         Colormap: Rainbow Uniform
