@@ -9,4 +9,4 @@ View:
 
 WaveformToVolume:
   Replace:
-    SpatialResolution: 100 #this value is needed for bremsstrahlung
+    SpatialResolution: 150
