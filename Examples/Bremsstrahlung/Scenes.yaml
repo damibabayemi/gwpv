@@ -1,0 +1,14 @@
+
+Scenes:
+  - Name: Cross
+    Composition:
+      - Cross
+  - Name: Plus
+    Composition:
+      - Plus
+  - Name: CrossFreeze
+    Composition:
+      - CrossFreeze
+  - Name: PlusFreeze
+    Composition:
+      - PlusFreeze
