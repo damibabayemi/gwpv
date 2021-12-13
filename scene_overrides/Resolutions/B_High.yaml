@@ -1,1 +1,13 @@
-High res
+
+Animation:
+  Replace:
+    FrameRate: 30
+
+View:
+  Replace:
+    ViewSize: [1920, 1080] # 1080p
+
+WaveformToVolume:
+  Replace:
+    SpatialResolution: 100
+    KeepEveryNthTimestep: 1
