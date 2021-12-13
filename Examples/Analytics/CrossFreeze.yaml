@@ -1,1 +1,9 @@
-the frozen stuff
+
+Base:
+  - Cross
+  - Background/Dark
+  - Resolutions/Test
+
+Animation:
+  Replace:
+    FreezeTime: -20
