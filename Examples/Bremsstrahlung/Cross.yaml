@@ -1,7 +1,7 @@
 Include:
   - Datasources
   - Background/Dark
-  - Resolutions/Test
+  - Resolutions/B_Medium
 
 Animation:
   Speed: 50
