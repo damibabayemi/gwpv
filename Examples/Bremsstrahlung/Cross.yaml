@@ -4,16 +4,14 @@ Include:
   - Resolutions/B_Medium
 
 Animation:
-  Speed: 100
+  Speed: 10
   Crop: [-2, 48]
   
-CameraShots:
-  Position: [0., -200, 0.]
-  ViewUp: [0., 0., 1.]
-  FocalPoint: [0., 0., 0.]
-  ViewAngle: 60
-  Time: 10
-  SwingDuration: 1
+#CameraShots:
+#  Position: [0., -200, 0.]
+#  ViewUp: [0., 0., 1.]
+#  FocalPoint: [0., 0., 0.]
+#  ViewAngle: 60
     
 WaveformToVolume:
   Size: 100
