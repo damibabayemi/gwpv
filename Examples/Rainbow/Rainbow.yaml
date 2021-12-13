@@ -11,14 +11,14 @@ Animation:
 WaveformToVolume:
   Size: 100
   RadialScale: 2.
-  Polarizations: ["Plus"]
+  Polarizations: ["Cross"] #plus here
 
 VolumeRepresentation:
-  ColorBy: Plus strain
+  ColorBy: Cross strain #plus here
   ScalarOpacityUnitDistance: 4.
 
 TransferFunctions:
-  - Field: Plus strain
+  - Field: Cross strain #plus here
     TransferFunction:
       Peaks:
         Colormap: Rainbow Uniform
