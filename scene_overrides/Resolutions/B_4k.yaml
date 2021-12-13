@@ -1,8 +1,4 @@
 
-Animation:
-  Replace:
-    FrameRate: 40
-
 View:
   Replace:
     ViewSize: [4096, 2160] # 4k
