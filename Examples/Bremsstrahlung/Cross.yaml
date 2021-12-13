@@ -6,6 +6,9 @@ Include:
 Animation:
   Speed: 10
   Crop: [-2, 48]
+  
+CameraShots:
+  Position: [0., 200, 0.]
 
 WaveformToVolume:
   Size: 100
