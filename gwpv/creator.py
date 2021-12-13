@@ -4,7 +4,7 @@ import numba
 import gwpv.waveform as gw
 import argparse
 
-D = 7
+D = 10
 num_points = 100
 X = np.linspace(-D, D, num_points)
 Y = X
