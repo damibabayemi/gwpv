@@ -2,7 +2,7 @@
 Base:
   - Cross
   - Background/Dark
-  - Resolutions/Test
+  - Resolutions/B_Medium
 
 Animation:
   Replace:
