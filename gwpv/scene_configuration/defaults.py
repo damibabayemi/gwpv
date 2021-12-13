@@ -61,7 +61,7 @@ def apply_defaults(scene):
         camera_distance = 2 * scene['WaveformToVolume']['Size']
         scene['CameraShots'] = [{
             'Position': [0., 0., -camera_distance],
-            'ViewUp': [0., 0., 1.],
+            'ViewUp': [0., 1., 0.],
             'FocalPoint': [0., 0., 0.],
             'ViewAngle': 60.
         }]
