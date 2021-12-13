@@ -1,1 +1,12 @@
-4k res
+
+Animation:
+  Replace:
+    FrameRate: 40
+
+View:
+  Replace:
+    ViewSize: [4096, 2160] # 4k
+
+WaveformToVolume:
+  Replace:
+    SpatialResolution: 100
