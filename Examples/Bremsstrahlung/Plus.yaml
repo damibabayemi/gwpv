@@ -15,7 +15,7 @@ WaveformToVolume:
 
 VolumeRepresentation:
   ColorBy: Plus strain
-  # ScalarOpacityUnitDistance: 4.
+  ScalarOpacityUnitDistance: 4.
 
 TransferFunctions:
   - Field: Plus strain
