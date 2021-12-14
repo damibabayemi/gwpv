@@ -4,8 +4,8 @@ Include:
   - Resolutions/B_Medium
 
 Animation:
-  Speed: 200
-  Crop: [-2, 48]
+  Speed: 30
+  Crop: [-2, 140]
   
 #CameraShots:
 #  Position: [0., -200, 0.]
