@@ -8,10 +8,10 @@ Animation:
   Crop: [-2, 140]
   
 CameraShots:
-  Position: [0., -200., 0.]
-  ViewUp: [0., 0., 1.]
-  FocalPoint: [0., 0., 0.]
-  ViewAngle: 60.
+  - Position: [0., -200., 0.]
+    ViewUp: [0., 0., 1.]
+    FocalPoint: [0., 0., 0.]
+    ViewAngle: 60.
     
 WaveformToVolume:
   Size: 100
