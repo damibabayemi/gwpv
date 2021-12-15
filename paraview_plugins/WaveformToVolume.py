@@ -377,7 +377,7 @@ class WaveformToVolume(VTKPythonAlgorithmBase):
                     np.min(list(map(abs, list(waveform_data.RowData['Time'] - t)))))
             # ...and pass the associated column of the strains grid to teh starin value
             # which is then visualized at the bottom
-            strain += 3*strains[indexx]
+            strain += 4*strains[indexx]
                 
         else:
 
