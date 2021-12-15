@@ -4,7 +4,7 @@ import numba
 import gwpv.waveform as gw
 import argparse
 
-D = 100
+D = 40
 num_points = 100
 X = np.linspace(-D, D, num_points)
 Y = X
@@ -27,7 +27,7 @@ m1 = args.mass1
 m2 = args.mass2
 
 # some randomly chosen timesteps
-t = np.linspace(0, 5000, 100)
+t = np.linspace(-10, 120, 100)
 
 # the waveform
 def waveform(x, y, z, t):
@@ -39,5 +39,5 @@ h5f = h5py.File('timeseparated.h5', 'w')
 gr = h5f.create_group('Extrapolated_N2.dir')
 gr.create_dataset('t_values.dir', data=t)
 for tea in t:
-    t_data = waveform(x, y, z, 0.2*tea)
+    t_data = waveform(x, y, z, tea)
     gr.create_dataset('t_{}.dir'.format(tea), data=t_data)
