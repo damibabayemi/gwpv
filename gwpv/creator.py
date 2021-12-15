@@ -31,7 +31,8 @@ t = np.linspace(0, 5000, 100)
 
 # the waveform
 def waveform(x, y, z, t):
-    return (gw.waveformPlus(x,y,z,t,b,g,m1,m2) + 1j*gw.waveformCross(x,y,z,t,b,g,m1,m2))*0.01
+    r = np.sqrt(x**2 + y**2 + z**2)
+    return np.divide(gw.waveformPlus(x,y,z,t,b,g,m1,m2) + 1j*gw.waveformCross(x,y,z,t,b,g,m1,m2),r)*0.01
 
 
 h5f = h5py.File('timeseparated.h5', 'w')
