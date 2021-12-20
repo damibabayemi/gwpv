@@ -45,7 +45,7 @@ pv.LoadPlugin(os.path.join(plugins_dir, 'TrajectoryTail.py'),
               remote=False,
               ns=globals())
 logger.info("ParaView plugins loaded.")
-
+pv.Text('Hallo render mich bitte')
 
 def render_frames(scene,
                   frames_dir=None,
