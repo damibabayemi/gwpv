@@ -2,11 +2,11 @@ import h5py
 import numpy as np
 
 h5f = h5py.File('trajdata.h5', 'w')
-gr = h5f.create_group('BH1.dir')
+
 grid = np.zeros((100, 4))
 grid[:, 0] = np.linspace(0, 45, 100)
 coordcenter = np.zeros((100, 4))
 coordcenter[:, 0] = np.linspace(0, 45, 100)
 grid[:, 3] = np.sin(np.linspace(0, 45, 100))
-gr.create_dataset('BH1', data=grid)
-gr.create_dataset('CoordCenterInertial', data=coordcenter)
+h5f.create_dataset('BH1', data=grid)
+h5f.create_dataset('CoordCenterInertial', data=coordcenter)
