@@ -13,9 +13,9 @@ parser.add_argument("-m1", "--mass1", type=int,
                     help="choose mass of black hole 1")
 parser.add_argument("-m2", "--mass2", type=int,
                     help="choose mass of black hole 2")
-parser.add_argument("-s1", "--spin1", type=int,
+parser.add_argument("-s1", "--spin1", type=int, default=1,
                     help="choose spin of black hole 1")
-parser.add_argument("-s2", "--spin2", type=int,
+parser.add_argument("-s2", "--spin2", type=int, default=1,
                     help="choose spin of black hole 2")
 parser.add_argument("-t", "--timesteps", type=int, default=100,
                     help="choose number of timesteps")
