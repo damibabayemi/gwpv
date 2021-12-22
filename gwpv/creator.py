@@ -33,8 +33,8 @@ g = args.gamma
 m1 = args.mass1
 m2 = args.mass2
 nt = args.timesteps
-ti = args.initial
 # timesteps got scaled for simpler handling
+ti = args.initial/6
 tf = args.final/6
 D = args.size
 
@@ -75,7 +75,7 @@ gr = h5f.create_group('Extrapolated_N2.dir')
 gr.create_dataset('t_values.dir', data=t)
 if args.get_curvature:
   for tea in t:
-      t_data = curvature(x, y, z, tea)
+      t_data = 0.5*curvature(x, y, z, tea)
       gr.create_dataset('t_{}.dir'.format(tea), data=t_data)
 else:
   for tea in t:
