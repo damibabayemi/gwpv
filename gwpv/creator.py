@@ -1,7 +1,6 @@
 import numpy as np
 import h5py
 import numba
-import gwpv.waveform as gw
 import argparse
 
 
@@ -14,10 +13,16 @@ parser.add_argument("-m1", "--mass1", type=int,
                     help="choose mass of black hole 1")
 parser.add_argument("-m2", "--mass2", type=int,
                     help="choose mass of black hole 2")
+parser.add_argument("-s1", "--spin1", type=int,
+                    help="choose spin of black hole 1")
+parser.add_argument("-s2", "--spin2", type=int,
+                    help="choose spin of black hole 2")
 parser.add_argument("-t", "--timesteps", type=int, default=100,
                     help="choose number of timesteps")
 parser.add_argument("--r-scaling", default=False, action="store_true",
                    help="add 1 over r scaling")
+parser.add_argument("--use-spinwaveform", default=False, action="store_true",
+                   help="use the waveform with spins")
 parser.add_argument("--get-curvature", default=False, action="store_true",
                    help="create curvature data instead of waveform data")
 parser.add_argument("-i", "--initial", type=int, default=0,
@@ -32,12 +37,18 @@ b = args.bparameter
 g = args.gamma
 m1 = args.mass1
 m2 = args.mass2
+s1 = args.spin1
+s2 = args.spin2
 nt = args.timesteps
 # timesteps got scaled for simpler handling
 ti = args.initial/6
 tf = args.final/6
 D = args.size
 
+if args.use_spinwaveform:
+  import gwpv.spinwaveform as gw
+else:
+  import gwpv.waveform as gw
 
 num_points = 100
 X = np.linspace(-D, D, num_points)
