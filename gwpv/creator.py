@@ -58,26 +58,48 @@ x, y, z = map(lambda arr: arr.flatten(order='F'), np.meshgrid(X, Y, Z, indexing=
 
 t = np.linspace(ti, tf, nt)
 
-# the waveform
-def waveform(x, y, z, t):
-    if args.r_scaling:
-      r = np.sqrt(x**2 + y**2 + z**2)
-      return np.divide(gw.waveformPlus(x,y,z,t,b,g,m1,m2) + 1j*gw.waveformCross(x,y,z,t,b,g,m1,m2), r)*0.01
-    else:
-      return (gw.waveformPlus(x,y,z,t,b,g,m1,m2) + 1j*gw.waveformCross(x,y,z,t,b,g,m1,m2))*0.01
-# use numerical differentiation techniques to  calculate space curvature
-def curvature(x, y, z, t):
-    if args.r_scaling:
-      h = 0.001
-      r = np.sqrt(x**2 + y**2 + z**2)
-      return np.divide((gw.waveformPlus(x,y,z,t+2*h,b,g,m1,m2) + 1j*gw.waveformCross(x,y,z,t+2*h,b,g,m1,m2))
-                       -2*(gw.waveformPlus(x,y,z,t+h,b,g,m1,m2) + 1j*gw.waveformCross(x,y,z,t+h,b,g,m1,m2))
-                       +(gw.waveformPlus(x,y,z,t,b,g,m1,m2) + 1j*gw.waveformCross(x,y,z,t,b,g,m1,m2)),(h**2)*r)
-    else:
-      h = 0.001
-      return np.divide((gw.waveformPlus(x,y,z,t+2*h,b,g,m1,m2) + 1j*gw.waveformCross(x,y,z,t+2*h,b,g,m1,m2))
-                       -2*(gw.waveformPlus(x,y,z,t+h,b,g,m1,m2) + 1j*gw.waveformCross(x,y,z,t+h,b,g,m1,m2))
-                       +(gw.waveformPlus(x,y,z,t,b,g,m1,m2) + 1j*gw.waveformCross(x,y,z,t,b,g,m1,m2)),(h**2))
+if args.use_spinwaveform:
+  # the waveform
+  def waveform(x, y, z, t):
+      if args.r_scaling:
+        r = np.sqrt(x**2 + y**2 + z**2)
+        return np.divide(gw.waveformPlus(x,y,z,t,b,g,m1,m2,s1,s2) + 1j*gw.waveformCross(x,y,z,t,b,g,m1,m2,s1,s2), r)*0.01
+      else:
+        return (gw.waveformPlus(x,y,z,t,b,g,m1,m2,s1,s2) + 1j*gw.waveformCross(x,y,z,t,b,g,m1,m2,s1,s2))*0.01
+  # use numerical differentiation techniques to  calculate space curvature
+  def curvature(x, y, z, t):
+      if args.r_scaling:
+        h = 0.001
+        r = np.sqrt(x**2 + y**2 + z**2)
+        return np.divide((gw.waveformPlus(x,y,z,t+2*h,b,g,m1,m2,s1,s2) + 1j*gw.waveformCross(x,y,z,t+2*h,b,g,m1,m2,s1,s2))
+                         -2*(gw.waveformPlus(x,y,z,t+h,b,g,m1,m2,s1,s2) + 1j*gw.waveformCross(x,y,z,t+h,b,g,m1,m2,s1,s2))
+                         +(gw.waveformPlus(x,y,z,t,b,g,m1,m2,s1,s2) + 1j*gw.waveformCross(x,y,z,t,b,g,m1,m2,s1,s2)),(h**2)*r)
+      else:
+        h = 0.001
+        return np.divide((gw.waveformPlus(x,y,z,t+2*h,b,g,m1,m2,s1,s2) + 1j*gw.waveformCross(x,y,z,t+2*h,b,g,m1,m2,s1,s2))
+                         -2*(gw.waveformPlus(x,y,z,t+h,b,g,m1,m2,s1,s2) + 1j*gw.waveformCross(x,y,z,t+h,b,g,m1,m2,s1,s2))
+                         +(gw.waveformPlus(x,y,z,t,b,g,m1,m2,s1,s2) + 1j*gw.waveformCross(x,y,z,t,b,g,m1,m2,s1,s2)),(h**2))
+else:
+        # the waveform
+  def waveform(x, y, z, t):
+      if args.r_scaling:
+        r = np.sqrt(x**2 + y**2 + z**2)
+        return np.divide(gw.waveformPlus(x,y,z,t,b,g,m1,m2) + 1j*gw.waveformCross(x,y,z,t,b,g,m1,m2), r)*0.01
+      else:
+        return (gw.waveformPlus(x,y,z,t,b,g,m1,m2) + 1j*gw.waveformCross(x,y,z,t,b,g,m1,m2))*0.01
+  # use numerical differentiation techniques to  calculate space curvature
+  def curvature(x, y, z, t):
+      if args.r_scaling:
+        h = 0.001
+        r = np.sqrt(x**2 + y**2 + z**2)
+        return np.divide((gw.waveformPlus(x,y,z,t+2*h,b,g,m1,m2) + 1j*gw.waveformCross(x,y,z,t+2*h,b,g,m1,m2))
+                         -2*(gw.waveformPlus(x,y,z,t+h,b,g,m1,m2) + 1j*gw.waveformCross(x,y,z,t+h,b,g,m1,m2))
+                         +(gw.waveformPlus(x,y,z,t,b,g,m1,m2) + 1j*gw.waveformCross(x,y,z,t,b,g,m1,m2)),(h**2)*r)
+      else:
+        h = 0.001
+        return np.divide((gw.waveformPlus(x,y,z,t+2*h,b,g,m1,m2) + 1j*gw.waveformCross(x,y,z,t+2*h,b,g,m1,m2))
+                         -2*(gw.waveformPlus(x,y,z,t+h,b,g,m1,m2) + 1j*gw.waveformCross(x,y,z,t+h,b,g,m1,m2))
+                         +(gw.waveformPlus(x,y,z,t,b,g,m1,m2) + 1j*gw.waveformCross(x,y,z,t,b,g,m1,m2)),(h**2))
 
 
 
