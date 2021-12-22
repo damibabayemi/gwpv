@@ -24,11 +24,12 @@ logger = logging.getLogger(__name__)
 
 # Here a grid is created and if analytical data created by creator.py
 # is recognized iti is loaded into the grid.
-strains = np.zeros((100, 1000000), dtype=np.complex)
+
 try:
     with h5py.File("gwpv/timeseparated.h5", "r") as f:
         h = f['Extrapolated_N2.dir']
         tick = np.real(h['t_values.dir'])
+        strains = np.zeros((len(tick), 1000000), dtype=np.complex)
         for i in range(len(tick)):
             strains[i] += np.real(h['t_{}.dir'.format(tick[i])]) + 1j*np.imag(h['t_{}.dir'.format(tick[i])])
 except FileNotFoundError:
@@ -36,6 +37,7 @@ except FileNotFoundError:
         with h5py.File("timeseparated.h5", "r") as f:
             h = f['Extrapolated_N2.dir']
             tick = np.real(h['t_values.dir'])
+            strains = np.zeros((len(tick), 1000000), dtype=np.complex)
             for i in range(len(tick)):
                 strains[i] += np.real(h['t_{}.dir'.format(tick[i])]) + 1j * np.imag(
                     h['t_{}.dir'.format(tick[i])])
@@ -44,6 +46,7 @@ except FileNotFoundError:
             with h5py.File("gwpv/gwpv/timeseparated.h5", "r") as f:
                 h = f['Extrapolated_N2.dir']
                 tick = np.real(h['t_values.dir'])
+                strains = np.zeros((len(tick), 1000000), dtype=np.complex)
                 for i in range(len(tick)):
                     strains[i] += np.real(h['t_{}.dir'.format(tick[i])]) + 1j * np.imag(
                         h['t_{}.dir'.format(tick[i])])
