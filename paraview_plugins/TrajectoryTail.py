@@ -66,6 +66,8 @@ class TrajectoryTail(VTKPythonAlgorithmBase):
 
         # Add age data to the points
         age = time - trajectory_data.PointData['Time']
+        logger.warning(str(age.shape))
+        logger.warning(str(age.dtype))
         age_vtk = vtknp.numpy_to_vtk(age, deep=True)
         age_vtk.SetName('Age')
         output.GetPointData().AddArray(age_vtk)
