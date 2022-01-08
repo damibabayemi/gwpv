@@ -49,7 +49,10 @@ class TrajectoryDataReader(VTKPythonAlgorithmBase):
     def RequestData(self, request, inInfo, outInfo):
         logger.debug("Requesting data...")
         output = dsa.WrapDataObject(vtkPolyData.GetData(outInfo))
-
+        
+        logger.warning(self._subfile)
+        logger.warning(self._filename)
+        
         with h5py.File(self._filename, 'r') as trajectory_file:
             subfile = trajectory_file[self._subfile]
             coords = np.array(subfile[self._coords_dataset])
