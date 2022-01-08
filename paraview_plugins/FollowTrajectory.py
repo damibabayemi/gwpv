@@ -59,14 +59,17 @@ class FollowTrajectory(VTKPythonAlgorithmBase):
         input = self.GetInputDataObject(0, 0)
         trajectory_data = dsa.WrapDataObject(input)
         output = dsa.WrapDataObject(vtkPolyData.GetData(outInfo))
-
+        logger.warning(input)
         # Retrieve current time
         time = timesteps_util.get_timestep(self, logger=logger)
 
         # Retrieve trajectory data
         trajectory_times = trajectory_data.PointData['Time']
         trajectory_points = trajectory_data.Points
-
+        logger.warning(str(trajectory_times.shape))
+        logger.warning(str(trajectory_times.dtype))
+        logger.warning(str(trajectory_points.shape))
+        logger.warning(str(trajectory_points.dtype))
         # Interpolate along the trajectory to find current position
         current_position = [
             np.interp(time, trajectory_times, trajectory_points[:, i])
