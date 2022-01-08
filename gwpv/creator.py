@@ -40,9 +40,8 @@ m2 = args.mass2
 s1 = args.spin1
 s2 = args.spin2
 nt = args.timesteps
-# timesteps got scaled for simpler handling
-ti = args.initial/6
-tf = args.final/6
+ti = args.initial
+tf = args.final
 D = args.size
 
 if args.use_spinwaveform:
