@@ -82,6 +82,8 @@ class TrajectoryDataReader(VTKPythonAlgorithmBase):
         # Add remaining datasets from file to trajectory points
         with h5py.File(self._filename, 'r') as trajectory_file:
             subfile = trajectory_file[self._subfile]
+            logger.warning(self._filename)
+            logger.warning(self._subfile)
             for dataset in subfile:
                 if dataset == self._coords_dataset:
                     continue
