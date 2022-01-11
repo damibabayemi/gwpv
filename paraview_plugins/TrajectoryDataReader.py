@@ -50,9 +50,6 @@ class TrajectoryDataReader(VTKPythonAlgorithmBase):
         logger.debug("Requesting data...")
         output = dsa.WrapDataObject(vtkPolyData.GetData(outInfo))
         
-        logger.warning(self._subfile)
-        logger.warning(self._filename)
-        
         with h5py.File(self._filename, 'r') as trajectory_file:
             subfile = trajectory_file[self._subfile]
             coords = np.array(subfile[self._coords_dataset])
@@ -82,8 +79,6 @@ class TrajectoryDataReader(VTKPythonAlgorithmBase):
         # Add remaining datasets from file to trajectory points
         with h5py.File(self._filename, 'r') as trajectory_file:
             subfile = trajectory_file[self._subfile]
-            logger.warning(self._filename)
-            logger.warning(self._subfile)
             for dataset in subfile:
                 if dataset == self._coords_dataset:
                     continue
