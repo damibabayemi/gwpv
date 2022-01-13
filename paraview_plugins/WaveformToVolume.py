@@ -376,8 +376,8 @@ class WaveformToVolume(VTKPythonAlgorithmBase):
         if type(waveform_data.RowData['Y_l2_m2'][5]) is dsa.VTKNoneArray:
             strain = np.zeros(1000000, dtype=np.complex)
             # generate the index of the current timestep...
-            indexx = list(map(abs, list(waveform_data.RowData['Time'] - t-1000))).index(
-                    np.min(list(map(abs, list(waveform_data.RowData['Time'] - t-1000)))))
+            indexx = list(map(abs, list(waveform_data.RowData['Time'] - t + 1000))).index(
+                    np.min(list(map(abs, list(waveform_data.RowData['Time'] - t + 1000)))))
             # ...and pass the associated column of the strains grid to teh starin value
             # which is then visualized at the bottom
             strain += 60*strains[indexx]
