@@ -245,7 +245,7 @@ def render_frames(scene,
 
     # Display arbitrary text
     if 'Text' in scene:
-        text_annotation = pv.Text(**scene['Text'])
+        text_annotation = pv.Shrink(pv.Text(**scene['Text']), 2)
         pv.Show(
             text_annotation, view, **scene['TextRepresentation'])
 
