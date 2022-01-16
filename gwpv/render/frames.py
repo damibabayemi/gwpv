@@ -243,6 +243,13 @@ def render_frames(scene,
         pv.Show(
             time_annotation, view, **scene['TimeAnnotationRepresentation'])
 
+    # Display arbitrary text
+    if 'Text' in scene:
+        text_annotation = pv.Text(volume_data,
+                                                **scene['Text'])
+        pv.Show(
+            text_annotation, view, **scene['TextRepresentation'])
+
     # Add spheres
     if 'Spheres' in scene:
         for sphere_config in scene['Spheres']:
