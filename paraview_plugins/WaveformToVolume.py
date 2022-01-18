@@ -23,7 +23,7 @@ import h5py
 logger = logging.getLogger(__name__)
 
 # A grid is created  here, and if analytical data created by creator.py
-# is recognized iti is loaded into the grid.
+# is recognized iti is loaded into the grid...
 
 try:
     with h5py.File("gwpv/timeseparated.h5", "r") as f:
