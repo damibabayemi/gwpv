@@ -7,7 +7,7 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("-b", "--bparameter", type=int,
                     help="choose scattering parametre b")
-parser.add_argument("-g", "--gamma", type=int,
+parser.add_argument("-g", "--gamma", type=float,
                     help="choose gamma factor")
 parser.add_argument("-m1", "--mass1", type=int,
                     help="choose mass of black hole 1")
