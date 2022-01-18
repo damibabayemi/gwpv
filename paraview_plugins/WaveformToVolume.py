@@ -22,7 +22,7 @@ import h5py
 
 logger = logging.getLogger(__name__)
 
-# Here a grid is created and if analytical data created by creator.py
+# A grid is created  here and if analytical data created by creator.py
 # is recognized iti is loaded into the grid.
 
 try:
