@@ -34,7 +34,7 @@ elif exists("gwpv/timeseparated.h5"):
 else:
     gb_path = None
 
-logger.warning(str(gb_path))
+logger.warning("Retrieving data from "+str(gb_path)+".")
 
 if gb_path != None:
     with h5py.File(gb_path, "r") as f:
