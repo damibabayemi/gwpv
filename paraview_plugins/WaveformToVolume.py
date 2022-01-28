@@ -19,7 +19,7 @@ import gwpv.plugin_util.timesteps as timesteps_util
 import gwpv.plugin_util.data_array_selection as das_util
 from gwpv import swsh_cache
 import h5py
-import os.path.existst as check
+import os.path.exists as check
 logger = logging.getLogger(__name__)
 
 # A grid is created  here, and if analytical data created by creator.py
