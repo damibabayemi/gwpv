@@ -27,10 +27,10 @@ logger = logging.getLogger(__name__)
 
 gb_path = None
 
-if exists("timeseperated.h5"):
-    gb_path = "timeseperated.h5"
-elif exists("gwpv/timeseperated.h5"):
-    gb_path = "gwpv/timeseperated.h5"
+if exists("timeseparated.h5"):
+    gb_path = "timeseparated.h5"
+elif exists("gwpv/timeseparated.h5"):
+    gb_path = "gwpv/timeseparated.h5"
 else:
     gb_path = None
 
