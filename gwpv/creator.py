@@ -5,19 +5,19 @@ import argparse
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-b", "--bparameter", type=int,
+parser.add_argument("-b", "--bparameter", type=float,
                     help="choose scattering parametre b")
 parser.add_argument("-g", "--gamma", type=float,
                     help="choose gamma factor")
-parser.add_argument("-m1", "--mass1", type=int,
+parser.add_argument("-m1", "--mass1", type=float,
                     help="choose mass of black hole 1")
-parser.add_argument("-m2", "--mass2", type=int,
+parser.add_argument("-m2", "--mass2", type=float,
                     help="choose mass of black hole 2")
-parser.add_argument("-s1", "--spin1", type=int, default=1,
+parser.add_argument("-s1", "--spin1", type=float, default=1,
                     help="choose spin of black hole 1")
-parser.add_argument("-s2", "--spin2", type=int, default=1,
+parser.add_argument("-s2", "--spin2", type=float, default=1,
                     help="choose spin of black hole 2")
-parser.add_argument("-t", "--timesteps", type=int, default=100,
+parser.add_argument("-t", "--timesteps", type=float, default=100,
                     help="choose number of timesteps")
 parser.add_argument("--r-scaling", default=False, action="store_true",
                    help="add 1 over r scaling")
