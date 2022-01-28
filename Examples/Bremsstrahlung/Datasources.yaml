@@ -1,0 +1,20 @@
+
+Replace:
+  Datasources:
+    Waveform:
+      File: gwpv/timeseparated.h5
+      Subfile: Extrapolated_N2.dir
+    SwshCache: swsh_cache
+    Skybox:
+      textures/Skybox.jpg
+    Starry:
+      textures/Nachts.png
+    Trajectories:
+      BH1:
+        File: gwpv/trajectory.h5
+        Subfile: trajectories
+        CoordinatesDataset: trajectory1
+      BH2:
+        File: gwpv/trajectory.h5
+        Subfile: trajectories
+        CoordinatesDataset: trajectory2

@@ -45,7 +45,7 @@ pv.LoadPlugin(os.path.join(plugins_dir, 'TrajectoryTail.py'),
               remote=False,
               ns=globals())
 logger.info("ParaView plugins loaded.")
-
+pv.Text()
 
 def render_frames(scene,
                   frames_dir=None,
@@ -242,6 +242,12 @@ def render_frames(scene,
                                                 **scene['TimeAnnotation'])
         pv.Show(
             time_annotation, view, **scene['TimeAnnotationRepresentation'])
+
+    # Display arbitrary text
+    if 'Text' in scene:
+        text_annotation = pv.Text(**scene['Text'])
+        pv.Show(
+            text_annotation, view, **scene['TextRepresentation'])
 
     # Add spheres
     if 'Spheres' in scene:

@@ -1,0 +1,9 @@
+
+Base:
+  - Cross
+  - Background/Dark
+  - Resolutions/B_Medium
+
+Animation:
+  Replace:
+    FreezeTime: 1500

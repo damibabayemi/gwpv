@@ -22,13 +22,14 @@ import h5py
 
 logger = logging.getLogger(__name__)
 
-# Here a grid is created and if analytical data created by creator.py
-# is recognized iti is loaded into the grid.
-strains = np.zeros((100, 1000000), dtype=np.complex)
+# A grid is created  here, and if analytical data created by creator.py
+# is recognized iti is loaded into the grid...
+
 try:
     with h5py.File("gwpv/timeseparated.h5", "r") as f:
         h = f['Extrapolated_N2.dir']
         tick = np.real(h['t_values.dir'])
+        strains = np.zeros((len(tick), 1000000), dtype=np.complex)
         for i in range(len(tick)):
             strains[i] += np.real(h['t_{}.dir'.format(tick[i])]) + 1j*np.imag(h['t_{}.dir'.format(tick[i])])
 except FileNotFoundError:
@@ -36,6 +37,7 @@ except FileNotFoundError:
         with h5py.File("timeseparated.h5", "r") as f:
             h = f['Extrapolated_N2.dir']
             tick = np.real(h['t_values.dir'])
+            strains = np.zeros((len(tick), 1000000), dtype=np.complex)
             for i in range(len(tick)):
                 strains[i] += np.real(h['t_{}.dir'.format(tick[i])]) + 1j * np.imag(
                     h['t_{}.dir'.format(tick[i])])
@@ -44,6 +46,7 @@ except FileNotFoundError:
             with h5py.File("gwpv/gwpv/timeseparated.h5", "r") as f:
                 h = f['Extrapolated_N2.dir']
                 tick = np.real(h['t_values.dir'])
+                strains = np.zeros((len(tick), 1000000), dtype=np.complex)
                 for i in range(len(tick)):
                     strains[i] += np.real(h['t_{}.dir'.format(tick[i])]) + 1j * np.imag(
                         h['t_{}.dir'.format(tick[i])])
@@ -373,11 +376,11 @@ class WaveformToVolume(VTKPythonAlgorithmBase):
         if type(waveform_data.RowData['Y_l2_m2'][5]) is dsa.VTKNoneArray:
             strain = np.zeros(1000000, dtype=np.complex)
             # generate the index of the current timestep...
-            indexx = list(map(abs, list(waveform_data.RowData['Time'] - t))).index(
-                    np.min(list(map(abs, list(waveform_data.RowData['Time'] - t)))))
+            indexx = list(map(abs, list(waveform_data.RowData['Time'] - t + 1000))).index(
+                    np.min(list(map(abs, list(waveform_data.RowData['Time'] - t + 1000)))))
             # ...and pass the associated column of the strains grid to teh starin value
             # which is then visualized at the bottom
-            strain += strains[indexx]
+            strain += 100*strains[indexx]
                 
         else:
 

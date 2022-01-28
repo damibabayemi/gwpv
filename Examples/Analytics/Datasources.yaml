@@ -1,8 +1,0 @@
-
-Replace:
-  Datasources:
-    Waveform:
-      File: gwpv/timeseparated.h5
-      Subfile: Extrapolated_N2.dir
-      Cache: waveform_data_cache
-    SwshCache: swsh_cache

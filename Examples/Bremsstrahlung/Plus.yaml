@@ -1,0 +1,111 @@
+
+Include:
+  - Datasources
+  - Background/Starry
+  - Resolutions/B_Medium
+
+Animation:
+  Speed: 3000
+  Crop: [700, 2200]
+
+WaveformToVolume:
+  Size: 100
+  RadialScale: 2.
+  Polarizations: ["Plus"]
+  
+CameraShots:
+  - Position: [0., 0., 200.]
+    ViewUp: [0., 1., 0.]
+    FocalPoint: [0., 0., 0.]
+    ViewAngle: 60.
+#  - Time: 1800.
+#    SwingDuration: 1.5
+#    Position: [0., 0., 200.]
+#    ViewUp: [0., 1., 0.]
+#    FocalPoint: [0., 0., 0.]
+#    ViewAngle: 60.
+        
+TimeAnnotation:
+  Shift: -10
+  Scale: 0.01
+
+TimeAnnotationRepresentation:
+  Opacity: 1.
+  WindowLocation: 'AnyLocation'
+  Position: [0.75, 0.05]
+  FontFamily: 'Courier'
+  FontSize: 40
+  Color: [0.8,0.7,0.1]
+
+  
+Trajectories:
+  - Name: BH1
+    Objects:
+      - Sphere:
+          Radius: 2
+        Representation:
+          AmbientColor: [0., 0., 0.]
+          DiffuseColor: [0., 0., 0.]
+          Opacity: 1
+        Visibility:
+          Start: 700
+          End: 2200
+    Tail:
+      LineWidth: 1
+      ColorBy: Age
+      Visibility:
+        Start: 1300
+        End: 2200
+        FadeIn:
+          TimeMode: Scene
+          Time: 300
+  - Name: BH2
+    Objects:
+      - Sphere:
+          Radius: 2
+        Representation:
+          AmbientColor: [0., 0., 0.]
+          DiffuseColor: [0., 0., 0.]
+          Opacity: 1
+        Visibility:
+          Start: 700
+          End: 2200
+    Tail:
+      LineWidth: 1
+      ColorBy: Age
+      Visibility:
+        Start: 1300
+        End: 2200
+        FadeIn:
+          TimeMode: Scene
+          Time: 300
+Text:
+  Text: $\gamma  = 2, \ \ \frac{m_1}{m_2} = 1, \ \ \frac{b}{m_1} = 100$
+
+
+TextRepresentation:
+  Opacity: 1.
+  WindowLocation: 'AnyLocation'
+  Position: [0.05, 0.05] 
+  FontFamily: 'Courier'
+  FontSize: 40
+  Color: [0.8,0.7,0.1]
+    
+VolumeRepresentation:
+  ColorBy: Plus strain
+  ScalarOpacityUnitDistance: 1.5
+
+TransferFunctions:
+  - Field: Plus strain
+    TransferFunction:
+      Peaks:
+        Colormap: Rainbow Uniform
+        NumPeaks: 7  # A rainbow has 7 colors. No more, no less.
+        FirstPeak:
+          Position: 0.02
+          Opacity: 0.1
+        LastPeak:
+          Position: 0.12
+          Opacity: 0.3
+          
+
