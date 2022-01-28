@@ -19,41 +19,31 @@ import gwpv.plugin_util.timesteps as timesteps_util
 import gwpv.plugin_util.data_array_selection as das_util
 from gwpv import swsh_cache
 import h5py
-
+import os.path.existst as check
 logger = logging.getLogger(__name__)
 
 # A grid is created  here, and if analytical data created by creator.py
 # is recognized iti is loaded into the grid...
 
-try:
+gb_path = None
+
+if exists("timeseperated.h5"):
+    gb_path = "timeseperated.h5"
+elif exists("gwpv/timeseperated.h5"):
+    gb_path = "gwpv/timeseperated.h5"
+
+if gb_path != None:
     with h5py.File("gwpv/timeseparated.h5", "r") as f:
         h = f['Extrapolated_N2.dir']
         tick = np.real(h['t_values.dir'])
         strains = np.zeros((len(tick), 1000000), dtype=np.complex)
         for i in range(len(tick)):
             strains[i] += np.real(h['t_{}.dir'.format(tick[i])]) + 1j*np.imag(h['t_{}.dir'.format(tick[i])])
-except FileNotFoundError or OSError:
-    try:
-        with h5py.File("timeseparated.h5", "r") as f:
-            h = f['Extrapolated_N2.dir']
-            tick = np.real(h['t_values.dir'])
-            strains = np.zeros((len(tick), 1000000), dtype=np.complex)
-            for i in range(len(tick)):
-                strains[i] += np.real(h['t_{}.dir'.format(tick[i])]) + 1j * np.imag(
-                    h['t_{}.dir'.format(tick[i])])
-    except FileNotFoundError or OSError:
-        try:
-            with h5py.File("gwpv/gwpv/timeseparated.h5", "r") as f:
-                h = f['Extrapolated_N2.dir']
-                tick = np.real(h['t_values.dir'])
-                strains = np.zeros((len(tick), 1000000), dtype=np.complex)
-                for i in range(len(tick)):
-                    strains[i] += np.real(h['t_{}.dir'.format(tick[i])]) + 1j * np.imag(
-                        h['t_{}.dir'.format(tick[i])])
-        except FileNotFoundError or OSError:
-            logger.warning('No Bremsstrahlung data found, proceeding with merger visualization.')
+else:
+     logger.warning('No Bremsstrahlung data found, proceeding with merger visualization.')
 
 
+        
 def get_mode_name(l, abs_m):
     return "({}, {}) Mode".format(l, abs_m)
 
