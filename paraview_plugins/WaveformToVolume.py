@@ -31,9 +31,13 @@ if exists("timeseperated.h5"):
     gb_path = "timeseperated.h5"
 elif exists("gwpv/timeseperated.h5"):
     gb_path = "gwpv/timeseperated.h5"
+else:
+    gb_path = None
+
+logger.warning(str(gb_path))
 
 if gb_path != None:
-    with h5py.File("gwpv/timeseparated.h5", "r") as f:
+    with h5py.File(gb_path, "r") as f:
         h = f['Extrapolated_N2.dir']
         tick = np.real(h['t_values.dir'])
         strains = np.zeros((len(tick), 1000000), dtype=np.complex)
