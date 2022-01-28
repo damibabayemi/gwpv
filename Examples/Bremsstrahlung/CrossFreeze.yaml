@@ -6,4 +6,4 @@ Base:
 
 Animation:
   Replace:
-    FreezeTime: 100
+    FreezeTime: 1500
