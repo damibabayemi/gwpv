@@ -32,7 +32,7 @@ try:
         strains = np.zeros((len(tick), 1000000), dtype=np.complex)
         for i in range(len(tick)):
             strains[i] += np.real(h['t_{}.dir'.format(tick[i])]) + 1j*np.imag(h['t_{}.dir'.format(tick[i])])
-except FileNotFoundError:
+except FileNotFoundError or OSError:
     try:
         with h5py.File("timeseparated.h5", "r") as f:
             h = f['Extrapolated_N2.dir']
@@ -41,7 +41,7 @@ except FileNotFoundError:
             for i in range(len(tick)):
                 strains[i] += np.real(h['t_{}.dir'.format(tick[i])]) + 1j * np.imag(
                     h['t_{}.dir'.format(tick[i])])
-    except FileNotFoundError:
+    except FileNotFoundError or OSError:
         try:
             with h5py.File("gwpv/gwpv/timeseparated.h5", "r") as f:
                 h = f['Extrapolated_N2.dir']
@@ -50,7 +50,7 @@ except FileNotFoundError:
                 for i in range(len(tick)):
                     strains[i] += np.real(h['t_{}.dir'.format(tick[i])]) + 1j * np.imag(
                         h['t_{}.dir'.format(tick[i])])
-        except FileNotFoundError:
+        except FileNotFoundError or OSError:
             logger.warning('No Bremsstrahlung data found, proceeding with merger visualization.')
 
 
