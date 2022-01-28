@@ -1,12 +1,12 @@
 
 Include:
   - Datasources
-  - Background/Skybox
+  - Background/Starry
   - Resolutions/B_Medium
 
 Animation:
-  Speed: 2000
-  Crop: [0, 1000]
+  Speed: 3000
+  Crop: [700, 2200]
 
 WaveformToVolume:
   Size: 100
@@ -14,17 +14,30 @@ WaveformToVolume:
   Polarizations: ["Plus"]
   
 CameraShots:
-  - Position: [0., 0., -200.]
+  - Position: [0., 0., 200.]
     ViewUp: [0., 1., 0.]
     FocalPoint: [0., 0., 0.]
     ViewAngle: 60.
-    
+#  - Time: 1800.
+#    SwingDuration: 1.5
+#    Position: [0., 0., 200.]
+#    ViewUp: [0., 1., 0.]
+#    FocalPoint: [0., 0., 0.]
+#    ViewAngle: 60.
+        
 TimeAnnotation:
-  Shift: 0
+  Shift: -10
+  Scale: 0.01
 
 TimeAnnotationRepresentation:
-  Opacity: 0.5
+  Opacity: 1.
+  WindowLocation: 'AnyLocation'
+  Position: [0.75, 0.05]
+  FontFamily: 'Courier'
+  FontSize: 40
+  Color: [0.8,0.7,0.1]
 
+  
 Trajectories:
   - Name: BH1
     Objects:
@@ -35,14 +48,14 @@ Trajectories:
           DiffuseColor: [0., 0., 0.]
           Opacity: 1
         Visibility:
-          Start: 0
-          End: 1000
+          Start: 700
+          End: 2200
     Tail:
-      LineWidth: 0.5
-      ColorBy: White
+      LineWidth: 1
+      ColorBy: Age
       Visibility:
-        Start: 500
-        End: 1000
+        Start: 1300
+        End: 2200
         FadeIn:
           TimeMode: Scene
           Time: 300
@@ -55,22 +68,32 @@ Trajectories:
           DiffuseColor: [0., 0., 0.]
           Opacity: 1
         Visibility:
-          Start: 0
-          End: 1000
+          Start: 700
+          End: 2200
     Tail:
-      LineWidth: 0.5
-      ColorBy: White
+      LineWidth: 1
+      ColorBy: Age
       Visibility:
-        Start: 500
-        End: 1000
+        Start: 1300
+        End: 2200
         FadeIn:
           TimeMode: Scene
           Time: 300
+Text:
+  Text: $\gamma  = 2, \ \ \frac{m_1}{m_2} = 1, \ \ \frac{b}{m_1} = 100$
 
+
+TextRepresentation:
+  Opacity: 1.
+  WindowLocation: 'AnyLocation'
+  Position: [0.05, 0.05] 
+  FontFamily: 'Courier'
+  FontSize: 40
+  Color: [0.8,0.7,0.1]
     
 VolumeRepresentation:
   ColorBy: Plus strain
-  ScalarOpacityUnitDistance: 4.
+  ScalarOpacityUnitDistance: 1.5
 
 TransferFunctions:
   - Field: Plus strain
@@ -79,8 +102,10 @@ TransferFunctions:
         Colormap: Rainbow Uniform
         NumPeaks: 7  # A rainbow has 7 colors. No more, no less.
         FirstPeak:
-          Position: 0.03
-          Opacity: 0.2
+          Position: 0.02
+          Opacity: 0.1
         LastPeak:
-          Position: 0.06
-          Opacity: 0.4
+          Position: 0.12
+          Opacity: 0.3
+          
+
