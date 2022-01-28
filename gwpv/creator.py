@@ -17,7 +17,7 @@ parser.add_argument("-s1", "--spin1", type=float, default=1,
                     help="choose spin of black hole 1")
 parser.add_argument("-s2", "--spin2", type=float, default=1,
                     help="choose spin of black hole 2")
-parser.add_argument("-t", "--timesteps", type=float, default=100,
+parser.add_argument("-t", "--timesteps", type=int, default=100,
                     help="choose number of timesteps")
 parser.add_argument("--r-scaling", default=False, action="store_true",
                    help="add 1 over r scaling")
@@ -27,9 +27,9 @@ parser.add_argument("--get-curvature", default=False, action="store_true",
                    help="create curvature data instead of waveform data")
 parser.add_argument("-i", "--initial", type=int, default=0,
                     help="choose initial time")
-parser.add_argument("-f", "--final", type=int, default=50,
+parser.add_argument("-f", "--final", type=float, default=50,
                     help="choose final time")
-parser.add_argument("-d", "--size", type=int, default=10,
+parser.add_argument("-d", "--size", type=float, default=10,
                     help="choose size of the rendered scene")
                     
 args = parser.parse_args()
