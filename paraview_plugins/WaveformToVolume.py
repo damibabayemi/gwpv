@@ -449,11 +449,11 @@ class WaveformToVolume(VTKPythonAlgorithmBase):
                             strain_mode_imag_vtk.SetName(mode_name + ' Cross')
                             output.GetPointData().AddArray(strain_mode_imag_vtk)
         if self.polarizations_selection.ArrayIsEnabled("Plus"):
-            strain_real_vtk = vtknp.numpy_to_vtk(np.abs(np.real(strain)), deep=True)
+            strain_real_vtk = vtknp.numpy_to_vtk(np.real(strain), deep=True)
             strain_real_vtk.SetName('Plus strain')
             output.GetPointData().AddArray(strain_real_vtk)
         if self.polarizations_selection.ArrayIsEnabled("Cross"):
-            strain_imag_vtk = vtknp.numpy_to_vtk(np.abs(np.imag(strain)), deep=True)
+            strain_imag_vtk = vtknp.numpy_to_vtk(np.imag(strain), deep=True)
             strain_imag_vtk.SetName('Cross strain')
             output.GetPointData().AddArray(strain_imag_vtk)
 
