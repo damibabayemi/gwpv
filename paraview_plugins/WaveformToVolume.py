@@ -374,7 +374,7 @@ class WaveformToVolume(VTKPythonAlgorithmBase):
                     np.min(list(map(abs, list(waveform_data.RowData['Time'] - t + 1000)))))
             # ...and pass the associated column of the strains grid to teh starin value
             # which is then visualized at the bottom
-            strain += 100*np.abs(strains[indexx])
+            strain += 100*strains[indexx]
                 
         else:
 
@@ -449,11 +449,11 @@ class WaveformToVolume(VTKPythonAlgorithmBase):
                             strain_mode_imag_vtk.SetName(mode_name + ' Cross')
                             output.GetPointData().AddArray(strain_mode_imag_vtk)
         if self.polarizations_selection.ArrayIsEnabled("Plus"):
-            strain_real_vtk = vtknp.numpy_to_vtk(np.real(strain), deep=True)
+            strain_real_vtk = vtknp.numpy_to_vtk(np.abs(np.real(strain)), deep=True)
             strain_real_vtk.SetName('Plus strain')
             output.GetPointData().AddArray(strain_real_vtk)
         if self.polarizations_selection.ArrayIsEnabled("Cross"):
-            strain_imag_vtk = vtknp.numpy_to_vtk(np.imag(strain), deep=True)
+            strain_imag_vtk = vtknp.numpy_to_vtk(np.abs(np.imag(strain)), deep=True)
             strain_imag_vtk.SetName('Cross strain')
             output.GetPointData().AddArray(strain_imag_vtk)
 
